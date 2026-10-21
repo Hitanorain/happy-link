@@ -212,7 +212,7 @@
 
 <script>
 'use strict';
-const VERSION = 'v1.0';
+const VERSION = 'v1.0.1';
 const $ = id => document.getElementById(id);
 const rand = (a, b) => a + Math.random() * (b - a);
 const rint = n => Math.floor(Math.random() * n);
@@ -1036,7 +1036,8 @@ addEventListener('resize', () => {
 });
 sizeCanvases(); initTheme();
 let lastT = performance.now();
-function frame(now) {
+function frame() {
+  const now = performance.now();   // 和出生/消除时间用同一个时钟
   const dt = Math.min(0.05, (now - lastT) / 1000); lastT = now;
   if ($('game').classList.contains('on')) { updateTiles(dt); updateTimer(dt, now); }
   drawBg(dt, now); drawBoard(now); drawFx(dt);
